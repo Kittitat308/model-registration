@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทำเนียบรุ่น</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        img{
+            transition: all;
+        }
+        img:hover{
+            opacity: 0.8;
+        }
+        body {
+            background-color: #f8f9fa; /* สีพื้นหลังของทั้งหน้า */
+        }
+        .navbar {
+            background-color: #007bff; /* สีพื้นหลังของ navbar */
+        }
+        .navbar-brand {
+            color: white;
+        }
+        .navbar-brand:hover {
+            color: #e3f2fd; /* สีเมื่อวางเมาส์เหนือชื่อแบรนด์ */
+        }
+        .nav-link {
+            color: white;
+        }
+        .nav-link:hover {
+            color: #e3f2fd; /* สีเมื่อวางเมาส์เหนือเมนู */
+        }
+        .card {
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05); /* ขยายขนาดของการ์ดเมื่อวางเมาส์ */
+        }
+        .card-img-top {
+            height: 200px; /* ความสูงของรูปภาพ */
+            object-fit: cover; /* ปรับขนาดรูปภาพให้ครอบคลุมพื้นที่ */
+        }
+        .card-body {
+            background-color: #ffffff; /* สีพื้นหลังของ card-body */
+            border-radius: 0 0 0.375rem 0.375rem; /* มุมของการ์ด */
+        }
+        .card-title {
+            font-weight: bold;
+        }
+        .bg-secondary {
+            background-color: #6c757d; /* สีพื้นหลังของพื้นที่ส่วนล่าง */
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            background-color: #007bff;
+        }
+        @media (max-width: 576px) { /* ขนาดหน้าจอขนาดเล็ก (มือถือ) */
+            .card-img-top {
+                height: 150px; /* ลดความสูงของรูปภาพสำหรับหน้าจอขนาดเล็ก */
+            }
+        }
+        @media (min-width: 768px) { /* ขนาดหน้าจอขนาดกลาง (แท็บเล็ต) */
+            .card-img-top {
+                height: 180px; /* ปรับความสูงของรูปภาพสำหรับแท็บเล็ต */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">ทำเนียบรุ่น</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">หน้าหลัก</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">รายชื่อสมาชิก</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">ข้อมูลติดต่อ</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  ข้อมูลเพิ่มเติม
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">เกี่ยวกับเรา</a></li>
+                  <li><a class="dropdown-item" href="#">นโยบายความเป็นส่วนตัว</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">คำถามที่พบบ่อย</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="ค้นหา" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">ค้นหา</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <h1 class="text-center my-4">ทำเนียบรุ่น</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- เริ่มลูปรุ่นที่ 1-30 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 1</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 2</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 3</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 4</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 5</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 6</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 7</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 8</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 9</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 10</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 11</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 12</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 13</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 14</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 15</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 16</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 17</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 18</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 19</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 20</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 21</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 22</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 23</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 24</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 25</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 26</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 27</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 28</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="page2.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZRAwIhBypj4b25hWIq5uDZmOIbpZ_hNz50w&s" class="card-img-top" alt="รูปภาพรุ่น"></a>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 29</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://bossangelesdjs.com/wp-content/uploads/2020/01/DirectoryBG-1.jpg" class="card-img-top" alt="รูปภาพรุ่น">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">รุ่นที่ 30</h5>
+                        <p class="card-text">รายละเอียดสั้นๆ ของรุ่น</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สิ้นสุดลูปรุ่นที่ 1-30 -->
+        </div>
+    </div>
+    <br>
+
+    <footer class="footer">
+        <p>© 2024 CSMJU. All rights reserved.</p>
+    </footer>
+
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

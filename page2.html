@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมาชิกในรุ่น</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #007bff; /* สีพื้นหลังของ navbar */
+        }
+        .navbar-brand {
+            color: white;
+        }
+        .navbar-brand:hover {
+            color: #e3f2fd; /* สีเมื่อวางเมาส์เหนือชื่อแบรนด์ */
+        }
+        .nav-link {
+            color: white;
+        }
+        .nav-link:hover {
+            color: #e3f2fd; /* สีเมื่อวางเมาส์เหนือเมนู */
+        }
+        .dropdown-menu {
+            background-color: #007bff; /* สีพื้นหลังของเมนูดรอปดาวน์ */
+        }
+        .dropdown-item {
+            color: white;
+        }
+        .dropdown-item:hover {
+            background-color: #0056b3; /* สีเมื่อวางเมาส์เหนือไอเท็มในดรอปดาวน์ */
+        }
+        .form-control {
+            border-radius: 20px; /* มุมของกล่องค้นหา */
+        }
+        .btn-outline-success {
+            border-radius: 20px; /* มุมของปุ่มค้นหา */
+            color: white;
+            border-color: white;
+        }
+        .btn-outline-success:hover {
+            background-color: white;
+            color: #007bff; /* สีพื้นหลังปุ่มค้นหาเมื่อวางเมาส์ */
+        }
+        img{
+            transition: all;
+        }
+        img:hover{
+            opacity: 0.8;
+        }
+        .container {
+            border: 2px solid #007bff; /* เพิ่มเส้นขอบสีน้ำเงิน */
+            border-radius: 8px; /* ปรับมุมเส้นขอบให้โค้งมน */
+            padding: 20px; /* เพิ่มการเว้นระยะห่างภายใน */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้กรอบ */
+            background-color: #f9f9f9; /* เพิ่มพื้นหลังสีอ่อน */
+        }
+        .card {
+            border: none; /* ลบเส้นขอบการ์ดออก */
+            box-shadow: none; /* ลบเงารอบการ์ด */
+            padding-top: 20px;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+            border: 3px solid #007bff; /* เพิ่มเส้นขอบให้กับรูปภาพ */
+        }
+
+        .card-body {
+            text-align: center;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .btn-back {
+            margin-bottom: 20px;
+        }
+        @media (max-width: 992px) { /* สำหรับหน้าจอขนาดเล็กลงจาก lg */
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            .card-title {
+                font-size: 1.125rem; /* ปรับขนาดตัวอักษรลง */
+            }
+            .card-text {
+                font-size: 0.9rem; /* ปรับขนาดตัวอักษรลง */
+            }
+        }
+
+        @media (max-width: 768px) { /* สำหรับหน้าจอขนาดเล็กลงจาก md */
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            .card-title {
+                font-size: 1.125rem; /* ปรับขนาดตัวอักษรลง */
+            }
+            .card-text {
+                font-size: 0.9rem; /* ปรับขนาดตัวอักษรลง */
+            }
+        }
+
+        @media (max-width: 576px) { /* สำหรับหน้าจอขนาดเล็กลงจาก sm */
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+            .card-title {
+                font-size: 0.875rem; /* ปรับขนาดตัวอักษรลง */
+            }
+            .card-text {
+                font-size: 0.75rem; /* ปรับขนาดตัวอักษรลง */
+            }
+        }    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">ทำเนียบรุ่น</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">หน้าหลัก</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">รายชื่อสมาชิก</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">ข้อมูลติดต่อ</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  ข้อมูลเพิ่มเติม
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">เกี่ยวกับเรา</a></li>
+                  <li><a class="dropdown-item" href="#">นโยบายความเป็นส่วนตัว</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">คำถามที่พบบ่อย</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="ค้นหา" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">ค้นหา</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <br>
+    <div class="container">
+        <a href="page1.html" class="btn btn-danger btn-back">ย้อนกลับ</a>
+        <h1 class="text-center my-4">สมาชิกในรุ่น</h1>
+        <hr>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <!-- เริ่มลูปรายการสมาชิก -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="./page3.html"><img src="https://img.freepik.com/premium-vector/student-vector-illustration-cartoon_969863-914.jpg" alt="สมหญิง สมศรี" class="profile-pic"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">กิตติทัศน์ วิริยา</h5>
+                        <p class="card-text">รหัสนักศึกษา: 6604101308</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมชาย ใจดี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมชาย ใจดี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123456</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://st.depositphotos.com/57803962/57301/v/450/depositphotos_573015004-stock-illustration-modern-icon-vector-illustration.jpg" alt="สมหญิง สมศรี" class="profile-pic">
+                    <div class="card-body">
+                        <h5 class="card-title">สมหญิง สมศรี</h5>
+                        <p class="card-text">รหัสนักศึกษา: 00123457</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- เพิ่มสมาชิกในลูปนี้ไปจนถึง 100 คน -->
+        </div>
+    </div>
+    <br>
+    <footer>
+        <p>&copy; 2024 ทำเนียบรุ่น</p>
+        <p>ติดตามเราได้ที่:
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a>
+        </p>
+        <p><a href="#">ติดต่อเรา</a> | <a href="#">นโยบายความเป็นส่วนตัว</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
